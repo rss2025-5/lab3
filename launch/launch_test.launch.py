@@ -69,7 +69,7 @@ def generate_launch_description():
             ('/test2/tf_static', '/tf_static'),
         ]
     )
-    
+
     test3 = Node(
         package="wall_follower",
         executable="test_wall_follower",
@@ -96,7 +96,7 @@ def generate_launch_description():
             ('/test3/tf_static', '/tf_static'),
         ]
     )
-    
+
     test4 = Node(
         package="wall_follower",
         executable="test_wall_follower",
@@ -123,7 +123,7 @@ def generate_launch_description():
             ('/test4/tf_static', '/tf_static'),
         ]
     )
-    
+
     test5 = Node(
         package="wall_follower",
         executable="test_wall_follower",
@@ -150,7 +150,7 @@ def generate_launch_description():
             ('/test5/tf_static', '/tf_static'),
         ]
     )
-    
+
     test6 = Node(
         package="wall_follower",
         executable="test_wall_follower",
@@ -177,8 +177,8 @@ def generate_launch_description():
             ('/test6/tf_static', '/tf_static'),
         ]
     )
-    
-    
+
+
     ############################################################################
     ### Define wall follower node
     ############################################################################
@@ -201,16 +201,16 @@ def generate_launch_description():
             ('/wall_follower_ns/tf_static', '/tf_static'),
         ]
     )
-    
-    
+
+
     ############################################################################
     ### Define commands to change parameters of the wall_follower node
-    ############################################################################  
+    ############################################################################
     setup_side2_1 = ExecuteProcess(
         cmd=[[
             FindExecutable(name='ros2'),
             ' param set ',
-            '/wall_follower_ns/wall_follower ', 
+            '/wall_follower_ns/wall_follower ',
             'side ',
             '1'
         ]],
@@ -220,7 +220,7 @@ def generate_launch_description():
         cmd=[[
             FindExecutable(name='ros2'),
             ' param set ',
-            '/wall_follower_ns/wall_follower ', 
+            '/wall_follower_ns/wall_follower ',
             'side ',
             '1'
         ]],
@@ -230,18 +230,18 @@ def generate_launch_description():
         cmd=[[
             FindExecutable(name='ros2'),
             ' param set ',
-            '/wall_follower_ns/wall_follower ', 
+            '/wall_follower_ns/wall_follower ',
             'side ',
             '1'
         ]],
         shell=True
     )
-    
+
     setup_side3_1 = ExecuteProcess(
         cmd=[[
             FindExecutable(name='ros2'),
             ' param set ',
-            '/wall_follower_ns/wall_follower ', 
+            '/wall_follower_ns/wall_follower ',
             'side ',
             '-1'
         ]],
@@ -251,7 +251,7 @@ def generate_launch_description():
         cmd=[[
             FindExecutable(name='ros2'),
             ' param set ',
-            '/wall_follower_ns/wall_follower ', 
+            '/wall_follower_ns/wall_follower ',
             'side ',
             '-1'
         ]],
@@ -261,18 +261,18 @@ def generate_launch_description():
         cmd=[[
             FindExecutable(name='ros2'),
             ' param set ',
-            '/wall_follower_ns/wall_follower ', 
+            '/wall_follower_ns/wall_follower ',
             'side ',
             '-1'
         ]],
         shell=True
     )
-    
+
     setup_v3_1 = ExecuteProcess(
         cmd=[[
             FindExecutable(name='ros2'),
             ' param set ',
-            '/wall_follower_ns/wall_follower ', 
+            '/wall_follower_ns/wall_follower ',
             'velocity ',
             '2.'
         ]],
@@ -282,7 +282,7 @@ def generate_launch_description():
         cmd=[[
             FindExecutable(name='ros2'),
             ' param set ',
-            '/wall_follower_ns/wall_follower ', 
+            '/wall_follower_ns/wall_follower ',
             'velocity ',
             '2.'
         ]],
@@ -292,18 +292,18 @@ def generate_launch_description():
         cmd=[[
             FindExecutable(name='ros2'),
             ' param set ',
-            '/wall_follower_ns/wall_follower ', 
+            '/wall_follower_ns/wall_follower ',
             'velocity ',
             '2.'
         ]],
         shell=True
     )
-    
+
     setup_side4_1 = ExecuteProcess(
         cmd=[[
             FindExecutable(name='ros2'),
             ' param set ',
-            '/wall_follower_ns/wall_follower ', 
+            '/wall_follower_ns/wall_follower ',
             'side ',
             '1'
         ]],
@@ -313,7 +313,7 @@ def generate_launch_description():
         cmd=[[
             FindExecutable(name='ros2'),
             ' param set ',
-            '/wall_follower_ns/wall_follower ', 
+            '/wall_follower_ns/wall_follower ',
             'side ',
             '1'
         ]],
@@ -323,18 +323,18 @@ def generate_launch_description():
         cmd=[[
             FindExecutable(name='ros2'),
             ' param set ',
-            '/wall_follower_ns/wall_follower ', 
+            '/wall_follower_ns/wall_follower ',
             'side ',
             '1'
         ]],
         shell=True
     )
-    
+
     setup_side5_1 = ExecuteProcess(
         cmd=[[
             FindExecutable(name='ros2'),
             ' param set ',
-            '/wall_follower_ns/wall_follower ', 
+            '/wall_follower_ns/wall_follower ',
             'side ',
             '-1'
         ]],
@@ -344,7 +344,7 @@ def generate_launch_description():
         cmd=[[
             FindExecutable(name='ros2'),
             ' param set ',
-            '/wall_follower_ns/wall_follower ', 
+            '/wall_follower_ns/wall_follower ',
             'side ',
             '-1'
         ]],
@@ -354,18 +354,18 @@ def generate_launch_description():
         cmd=[[
             FindExecutable(name='ros2'),
             ' param set ',
-            '/wall_follower_ns/wall_follower ', 
+            '/wall_follower_ns/wall_follower ',
             'side ',
             '-1'
         ]],
         shell=True
     )
-    
+
     setup_side6_1 = ExecuteProcess(
         cmd=[[
             FindExecutable(name='ros2'),
             ' param set ',
-            '/wall_follower_ns/wall_follower ', 
+            '/wall_follower_ns/wall_follower ',
             'side ',
             '1'
         ]],
@@ -375,7 +375,7 @@ def generate_launch_description():
         cmd=[[
             FindExecutable(name='ros2'),
             ' param set ',
-            '/wall_follower_ns/wall_follower ', 
+            '/wall_follower_ns/wall_follower ',
             'side ',
             '1'
         ]],
@@ -385,18 +385,18 @@ def generate_launch_description():
         cmd=[[
             FindExecutable(name='ros2'),
             ' param set ',
-            '/wall_follower_ns/wall_follower ', 
+            '/wall_follower_ns/wall_follower ',
             'side ',
             '1'
         ]],
         shell=True
     )
-    
+
     setup_v6_1 = ExecuteProcess(
         cmd=[[
             FindExecutable(name='ros2'),
             ' param set ',
-            '/wall_follower_ns/wall_follower ', 
+            '/wall_follower_ns/wall_follower ',
             'velocity ',
             '3.'
         ]],
@@ -406,7 +406,7 @@ def generate_launch_description():
         cmd=[[
             FindExecutable(name='ros2'),
             ' param set ',
-            '/wall_follower_ns/wall_follower ', 
+            '/wall_follower_ns/wall_follower ',
             'velocity ',
             '3.'
         ]],
@@ -416,18 +416,18 @@ def generate_launch_description():
         cmd=[[
             FindExecutable(name='ros2'),
             ' param set ',
-            '/wall_follower_ns/wall_follower ', 
+            '/wall_follower_ns/wall_follower ',
             'velocity ',
             '3.'
         ]],
         shell=True
     )
-    
+
     setup_d6_1 = ExecuteProcess(
         cmd=[[
             FindExecutable(name='ros2'),
             ' param set ',
-            '/wall_follower_ns/wall_follower ', 
+            '/wall_follower_ns/wall_follower ',
             'desired_distance ',
             '0.72'
         ]],
@@ -437,7 +437,7 @@ def generate_launch_description():
         cmd=[[
             FindExecutable(name='ros2'),
             ' param set ',
-            '/wall_follower_ns/wall_follower ', 
+            '/wall_follower_ns/wall_follower ',
             'desired_distance ',
             '0.72'
         ]],
@@ -447,20 +447,38 @@ def generate_launch_description():
         cmd=[[
             FindExecutable(name='ros2'),
             ' param set ',
-            '/wall_follower_ns/wall_follower ', 
+            '/wall_follower_ns/wall_follower ',
             'desired_distance ',
             '0.72'
         ]],
         shell=True
     )
-    
+
 
     ############################################################################
     ### Define launch description
     ############################################################################
+
+    # return LaunchDescription([
+    #     test4,
+
+    #     # Start wall follower at beginning of the test (wall follower node is only spun up once)
+    #     RegisterEventHandler(
+    #         OnProcessStart(
+    #             target_action=test4,
+    #             on_start=[
+    #                 LogInfo(msg='Test 1 started, starting wall follower'),
+    #                 TimerAction(
+    #                     period=1.0,
+    #                     actions=[setup_side4_1, setup_v3_1, wall_follower],
+    #                 )
+    #             ]
+    #         )
+    #     ),
+    # ])
     return LaunchDescription([
         test1,
-        
+
         # Start wall follower at beginning of the test (wall follower node is only spun up once)
         RegisterEventHandler(
             OnProcessStart(
@@ -474,7 +492,7 @@ def generate_launch_description():
                 ]
             )
         ),
-        
+
         # Start test 2 after test 1 finishes
         RegisterEventHandler(
             OnProcessExit(
@@ -494,7 +512,7 @@ def generate_launch_description():
                 ]
             )
         ),
-        
+
         # Start test 3 after test 2 finishes
         RegisterEventHandler(
             OnProcessExit(
@@ -523,7 +541,7 @@ def generate_launch_description():
                 ]
             )
         ),
-        
+
         # Start test 4 after test 3 finishes
         RegisterEventHandler(
             OnProcessExit(
@@ -543,7 +561,7 @@ def generate_launch_description():
                 ]
             )
         ),
-        
+
         # Start test 5 after test 4 finishes
         RegisterEventHandler(
             OnProcessExit(
@@ -563,7 +581,7 @@ def generate_launch_description():
                 ]
             )
         ),
-        
+
         # Start test 6 after test 5 finishes
         RegisterEventHandler(
             OnProcessExit(
