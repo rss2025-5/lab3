@@ -1,0 +1,7 @@
+wall_follower:
+  ros__parameters:
+    scan_topic: "/scan"
+    drive_topic: "/vesc/high_level/ackermann_cmd" #"/drive"
+    side: 1
+    velocity: 3.0
+    desired_distance: 1.
