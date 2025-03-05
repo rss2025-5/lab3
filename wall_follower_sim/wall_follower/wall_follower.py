@@ -16,11 +16,11 @@ class WallFollower(Node):
         super().__init__("wall_follower")
         # Declare parameters to make them available for use
         # DO NOT MODIFY THIS!
-        self.declare_parameter("scan_topic", "default")
-        self.declare_parameter("drive_topic", "default")
-        self.declare_parameter("side", "default")
-        self.declare_parameter("velocity", "default")
-        self.declare_parameter("desired_distance", "default")
+        self.declare_parameter("scan_topic", "/scan")
+        self.declare_parameter("drive_topic", "/vesc/high_level/ackermann_cmd")
+        self.declare_parameter("side", -1)
+        self.declare_parameter("velocity", 0.5)
+        self.declare_parameter("desired_distance", 0.5)
 
         # Fetch constants from the ROS parameter server
         # DO NOT MODIFY THIS! This is necessary for the tests to be able to test varying parameters!
