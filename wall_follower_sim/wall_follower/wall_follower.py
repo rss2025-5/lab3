@@ -20,7 +20,7 @@ class WallFollower(Node):
         self.declare_parameter("drive_topic", "/vesc/high_level/ackermann_cmd")
         self.declare_parameter("side", -1)
         self.declare_parameter("velocity", 0.5)
-        self.declare_parameter("desired_distance", 0.5)
+        self.declare_parameter("desired_distance", 1.5)
 
         # Fetch constants from the ROS parameter server
         # DO NOT MODIFY THIS! This is necessary for the tests to be able to test varying parameters!

@@ -50,7 +50,7 @@ class SafetyController(Node):
         self.declare_parameter("scan_topic", "/scan")
         self.declare_parameter("safety_topic", "/vesc/low_level/input/safety")
         self.declare_parameter("intercept_topic", "default")
-        self.declare_parameter("stop_distance", 0.3)
+        self.declare_parameter("stop_distance", 0.5)
 
         # Fetch constants from the ROS parameter server
         # DO NOT MODIFY THIS! This is necessary for the tests to be able to test varying parameters!

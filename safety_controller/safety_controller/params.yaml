@@ -3,4 +3,4 @@ safety_controller:
     scan_topic: "/scan"
     safety_topic: "/vesc/low_level/input/safety"
     intercept_topic: "/vesc/low_level/ackermann_cmd"
-    stop_distance: 0.3
+    stop_distance: 0.5
