@@ -8,6 +8,8 @@ from ackermann_msgs.msg import AckermannDriveStamped
 from visualization_msgs.msg import Marker
 from rcl_interfaces.msg import SetParametersResult
 
+from mse_msgs.msg import MSE
+
 
 def polar_to_cartesian(r: np.ndarray, theta: np.ndarray) -> np.ndarray:
     """
@@ -58,16 +60,21 @@ class SafetyController(Node):
 
         self.get_logger().info(self.SCAN_TOPIC)
 
-        self.SAFETY_TOPIC = "/vesc/low_level/input/safety"
-        self.INTERCEPT_TOPIC = "/vesc/low_level/input/navigation"
+        self.SAFETY_TOPIC = "/drive" # "/vesc/low_level/input/safety"
+        self.INTERCEPT_TOPIC = "/drive" # "/vesc/low_level/input/navigation"
         self.STOP_DISTANCE = 0.3
 
         #self.intercept_sub = self.create_subscription(AckermannDriveStamped, self.INTERCEPT_TOPIC, 10)
         self.safety_pub = self.create_publisher(AckermannDriveStamped, self.SAFETY_TOPIC, 10)
         self.scan_sub = self.create_subscription(LaserScan, self.SCAN_TOPIC, self.scan_callback, 10)
+        self.intercept_sub = self.create_subscription(AckermannDriveStamped, self.INTERCEPT_TOPIC, self.stopped_callback, 10)
+        self.mse_pub = self.create_publisher(MSE, "mse", 10)
+        self.mse_sub = self.create_subscription(MSE, "mse", self.mse_error_retrieve, 10)
 
 
-
+        self.mse_total_error = 0
+        self.mse_num_errors = 0
+        self.mse = 0
 
     def scan_callback(self, scan):
         angles = np.arange(scan.angle_min, scan.angle_max, scan.angle_increment)
@@ -107,7 +114,14 @@ class SafetyController(Node):
 
         self.safety_pub.publish(drive_msg)
 
+    def mse_error_retrieve(self, MSE_msg):
+        self.mse_num_errors = MSE_msg.num_errors
+        self.mse_total_error = MSE_msg.total_error
 
+    def stopped_callback(self, ack_cmd):
+        if ack_cmd.drive.speed == 0:
+            mse = self.mse_total_error/self.mse_num_errors
+            self.get_logger().info("MSE: %s" %mse)
 
 def main(args=None):
     rclpy.init(args=args)

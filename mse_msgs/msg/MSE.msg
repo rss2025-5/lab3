@@ -1,0 +1,2 @@
+float32 total_error
+float32 num_errors

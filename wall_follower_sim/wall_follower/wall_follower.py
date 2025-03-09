@@ -6,6 +6,9 @@ from sensor_msgs.msg import LaserScan
 from ackermann_msgs.msg import AckermannDriveStamped
 from visualization_msgs.msg import Marker
 from rcl_interfaces.msg import SetParametersResult
+from std_msgs.msg import Float32
+
+from mse_msgs.msg import MSE
 
 from wall_follower.visualization_tools import VisualizationTools
 
@@ -43,6 +46,11 @@ class WallFollower(Node):
 
         self.prev_error = 0
         self.t_before = 0
+
+        # Harry's MSE
+        self.publish_MSE = self.create_publisher(MSE, "mse", 10)
+        self.total_error = 0.0
+        self.num_errors = 0.0
 
     # TODO: Write your callback functions here
     def listener_callback(self, laser_scan):
@@ -99,8 +107,20 @@ class WallFollower(Node):
         self.t_before = self.get_clock().now().nanoseconds / (1e9)
 
         error = np.mean(desired_y)
+        true_point = np.mean(wall_y) + offset
+        MSE_error = (true_point - error)**2
+        self.total_error += MSE_error
+        self.num_errors += 1.0
 
-        self.get_logger().info("wall_y: %s, desired_y: %s" %(wall_y, desired_y))
+        self.get_logger().info("True point: %s, Error: %s" %(true_point, error))
+
+        MSE_msg = MSE()
+        MSE_msg.total_error = self.total_error
+        MSE_msg.num_errors = self.num_errors
+
+        self.publish_MSE.publish(MSE_msg)
+
+        # self.get_logger().info("wall_y: %s, desired_y: %s" %(wall_y, desired_y))
 
         integral = error*dt
         deriv = (self.prev_error - error)/dt
@@ -116,8 +136,8 @@ class WallFollower(Node):
         ack_msg.drive.speed = np.abs(self.VELOCITY)
 
         self.publisher_.publish(ack_msg)
-        self.get_logger().info('I hear then publish \n steering angle: "%s" \n speed: "%s"\n'
-                               % (ack_msg.drive.steering_angle, ack_msg.drive.speed))
+        # self.get_logger().info('I hear then publish \n steering angle: "%s" \n speed: "%s"\n'
+        #                        % (ack_msg.drive.steering_angle, ack_msg.drive.speed))
 
     def parameters_callback(self, params):
         """
