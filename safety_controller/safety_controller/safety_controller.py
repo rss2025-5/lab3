@@ -58,8 +58,8 @@ class SafetyController(Node):
 
         self.get_logger().info(self.SCAN_TOPIC)
 
-        self.SAFETY_TOPIC = "/drive"
-        self.INTERCEPT_TOPIC = "/drive"
+        self.SAFETY_TOPIC = "/vesc/low_level/input/safety"
+        self.INTERCEPT_TOPIC = "/vesc/low_level/input/navigation"
         self.STOP_DISTANCE = 0.3
 
         #self.intercept_sub = self.create_subscription(AckermannDriveStamped, self.INTERCEPT_TOPIC, 10)

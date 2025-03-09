@@ -2,5 +2,5 @@ safety_controller:
   ros__parameters:
     scan_topic: "/scan"
     safety_topic: "/vesc/low_level/input/safety"
-    intercept_topic: "/vesc/low_level/ackermann_cmd"
+    intercept_topic: "/vesc/low_level/input/navigation"
     stop_distance: 0.3
