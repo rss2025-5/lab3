@@ -5,6 +5,7 @@ from sensor_msgs.msg import LaserScan
 from ackermann_msgs.msg import AckermannDriveStamped
 import math
 import numpy as np
+from std_msgs.msg import Bool
 
 
 class SafetyController(Node):
@@ -13,8 +14,8 @@ class SafetyController(Node):
 
         # Declare params
         self.declare_parameter('scan_topic', '/scan')
-        self.declare_parameter('drive_topic_in', '/drive_raw')
-        self.declare_parameter('drive_topic_out', '/drive')
+        self.declare_parameter('drive_topic_in', '/vesc/low_level/input/navigation')
+        self.declare_parameter('drive_topic_out', '/vesc/low_level/input/safety')
         self.declare_parameter('wheelbase', 0.33)
         self.declare_parameter('look_ahead_dist', 0.75) #TUNE: 0.75
         self.declare_parameter('car_width', 0.32)
@@ -33,9 +34,11 @@ class SafetyController(Node):
         self.scan_sub = self.create_subscription(LaserScan, self.scan_topic, self.lidar_callback, 10)
         self.drive_sub = self.create_subscription(AckermannDriveStamped, self.drive_topic_in, self.desired_drive_callback, 10)
         self.safety_drive_pub = self.create_publisher(AckermannDriveStamped, self.drive_topic_out, 10)
+        self.obstacle_pub = self.create_publisher(Bool, "/obstacle_detected", 10)
 
         #Cache last drive command received
         self.last_desired_drive = AckermannDriveStamped()
+
 
 
     def desired_drive_callback(self, msg: AckermannDriveStamped):
@@ -122,6 +125,9 @@ class SafetyController(Node):
         # If number of points in the envelope exceeds threshold issue stop command
         if points_in_envelope > self.max_points:
             self.get_logger().warn(f"COLLISION DETECTED: {points_in_envelope} points => STOP.")
+            obstacle_msg = Bool()
+            obstacle_msg.data = True
+            self.obstacle_pub.publish(obstacle_msg)
             safe_cmd = AckermannDriveStamped()
             safe_cmd.drive.speed = 0.0
             safe_cmd.drive.steering_angle = 0.0
@@ -129,6 +135,9 @@ class SafetyController(Node):
 
         # Otherwise pass through last desired drive command
         else:
+            obstacle_msg = Bool()
+            obstacle_msg.data = False
+            self.obstacle_pub.publish(obstacle_msg)
             self.publish_safe_drive(self.last_desired_drive)
 
 

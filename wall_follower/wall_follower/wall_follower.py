@@ -45,7 +45,7 @@ class WallFollower(Node):
         if self.SCAN_TOPIC == "default":
             self.SCAN_TOPIC = "/scan"
         if self.DRIVE_TOPIC == "default":
-            self.DRIVE_TOPIC = "/drive"
+            self.DRIVE_TOPIC = "/vesc/low_level/input/navigation"
 
         # ROS subscribers and publishers
         self.scan_sub = self.create_subscription(LaserScan, self.SCAN_TOPIC, self.lidar_callback, 10)
