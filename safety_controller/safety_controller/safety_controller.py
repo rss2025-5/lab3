@@ -17,7 +17,7 @@ class SafetyController(Node):
         self.declare_parameter('drive_topic_in', '/vesc/low_level/input/navigation')
         self.declare_parameter('drive_topic_out', '/vesc/low_level/input/safety')
         self.declare_parameter('wheelbase', 0.33)
-        self.declare_parameter('look_ahead_dist', 0.75) #TUNE: 0.75
+        self.declare_parameter('look_ahead_dist', 0.45) #TUNE: 0.75
         self.declare_parameter('car_width', 0.32)
         self.declare_parameter('max_points_in_envelope', 2)
 

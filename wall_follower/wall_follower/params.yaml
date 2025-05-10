@@ -3,5 +3,5 @@ wall_follower:
     scan_topic: "/scan"
     drive_topic: "/drive_wall"
     side: -1
-    velocity: 3.0
+    velocity: 1.5
     desired_distance: 0.6
