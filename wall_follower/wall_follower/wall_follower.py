@@ -18,7 +18,7 @@ class WallFollower(Node):
         self.declare_parameter("scan_topic", "default")
         self.declare_parameter("drive_topic", "/drive")
         self.declare_parameter("side", 1)
-        self.declare_parameter("velocity", 1.0)
+        self.declare_parameter("velocity", 0.75)
         self.declare_parameter("desired_distance", 1.0)
         self.declare_parameter("lookahead_distance", 1.5) #TUNE: 1.5
         self.declare_parameter("wheelbase", 0.33)
